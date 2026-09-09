@@ -21,7 +21,7 @@ Flask-WTF<2
 # required for testing polars dataset integration
 polars>=1
 # required for the genai evaluation example
-# openai 3.0.0 switched the default HTTP client to HTTPX2 and stopped installing httpx.
+# rhoai-3.3's examples and integration code target OpenAI's legacy HTTPX client.
 openai<3
 # required for the haystack
 # haystack-ai 3.0.0 removed OpenTelemetryTracer used by mlflow.haystack
