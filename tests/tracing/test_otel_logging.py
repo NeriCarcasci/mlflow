@@ -617,7 +617,10 @@ def test_error_logging_spans(mlflow_server: str, caplog: pytest.LogCaptureFixtur
 
         span_processor.force_flush()
 
-        assert any(record.levelno == logging.ERROR for record in caplog.records)
+        assert call_count["count"] == 1
+        assert any(
+            "Failed to export span batch" in record.getMessage() for record in caplog.records
+        )
 
     traces = mlflow.search_traces(
         experiment_ids=[experiment_id], include_spans=False, return_type="list"

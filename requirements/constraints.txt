@@ -30,8 +30,8 @@ packaging<26
 # databricks-sdk 0.101.0 changed OIDC resolution to always fetch host metadata,
 # causing tracing tests to make real HTTP calls even with dummy hosts.
 databricks-sdk<0.101.0
-# opentelemetry-sdk 1.43.0 added processor _metrics and changed OTLP HTTP exporter
-# error logging, which breaks InferenceTableSpanProcessor tests and
-# test_error_logging_spans on rhoai-3.3.
+# Keep rhoai-3.3 CI on the last validated OpenTelemetry 1.42 release line.
+# The processor and logging tests below support that line without depending on
+# private exporter logger call shapes; this cap prevents further code-freeze drift.
 opentelemetry-api<1.43
 opentelemetry-sdk<1.43
