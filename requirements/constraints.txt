@@ -25,13 +25,11 @@ transformers<5
 sse-starlette<3
 # The rhoai-3.3 scoring server and mock OpenAI test server are not compatible with newer FastAPI.
 fastapi==0.115.14
+# Starlette 0.46.2 accesses ``anyio.from_thread`` through AnyIO's top-level module,
+# which was removed in AnyIO 4.15.0.
+anyio<4.15
 # Exported model environments must stay within MLflow's declared packaging<26 bound.
 packaging<26
 # databricks-sdk 0.101.0 changed OIDC resolution to always fetch host metadata,
 # causing tracing tests to make real HTTP calls even with dummy hosts.
 databricks-sdk<0.101.0
-# Keep rhoai-3.3 CI on the last validated OpenTelemetry 1.42 release line.
-# The processor and logging tests below support that line without depending on
-# private exporter logger call shapes; this cap prevents further code-freeze drift.
-opentelemetry-api<1.43
-opentelemetry-sdk<1.43

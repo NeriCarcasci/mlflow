@@ -56,9 +56,7 @@ librosa
 ffmpeg
 accelerate
 # Required by mlflow.openai
-# OpenAI 3 switched to HTTPX2, while rhoai-3.3's integration and mocks target
-# the legacy HTTPX client. Keep this maintenance branch on the compatible major.
-openai<3
+openai
 tiktoken
 tenacity
 # Required by mlflow.llama_index

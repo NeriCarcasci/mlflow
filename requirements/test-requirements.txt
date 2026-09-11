@@ -23,9 +23,7 @@ tiktoken
 # Required by progress bar tests
 tqdm[notebook]
 # Required for LLM eval in `mlflow.evaluate`
-# OpenAI 3 switched to HTTPX2, while rhoai-3.3's integration and mocks target
-# the legacy HTTPX client. Keep this maintenance branch on the compatible major.
-openai<3
+openai
 # Required for showing pytest stats
 psutil
 pyspark<4.1.0

@@ -233,8 +233,8 @@ class SqlRun(Base):
 
     __table_args__ = (
         CheckConstraint(source_type.in_(SourceTypes), name="source_type"),
-        # Historical migrations generate this SQLite CHECK constraint without a stable name.
-        # Keep ORM metadata aligned with that schema so Alembic autogenerate sees no drift.
+        # cfd24bdc0731 recreates this constraint through an unnamed Enum. SQLite reflects it
+        # as unnamed, so preserve that metadata to prevent Alembic autogenerate drift.
         CheckConstraint(status.in_(RunStatusTypes)),
         CheckConstraint(
             lifecycle_stage.in_(LifecycleStage.view_type_to_stages(ViewType.ALL)),

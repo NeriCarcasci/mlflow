@@ -2637,7 +2637,9 @@ def test_lock_model_requirements_pip_requirements(monkeypatch: pytest.MonkeyPatc
     assert "# Locked requirements" in contents
     assert "mlflow==" in contents
     assert "openai==" in contents
-    # openai<3 pulls httpx; openai 3+ pulls httpx2 instead.
+    # `openai` migrated its HTTP client from `httpx` (1.x) to `httpx2` (2.x, a
+    # separate distribution), so an unpinned `openai` locks one or the other
+    # depending on the resolved version. Assert the family is locked either way.
     assert "httpx==" in contents or "httpx2==" in contents
 
 
@@ -2656,7 +2658,6 @@ def test_lock_model_requirements_extra_pip_requirements(
     assert "# Locked requirements" in contents
     assert "mlflow==" in contents
     assert "openai==" in contents
-    # openai<3 pulls httpx; openai 3+ pulls httpx2 instead.
     assert "httpx==" in contents or "httpx2==" in contents
 
 

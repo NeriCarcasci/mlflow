@@ -386,7 +386,9 @@ def _kill_all(pid: str):
 def test_proxy_log_artifacts(monkeypatch, tmp_path):
     backend_uri = f"sqlite:///{tmp_path / 'sqlalchemy.db'}"
     port = get_safe_port()
-    host = "localhost"
+    # Gunicorn resolves localhost to IPv4, while clients on some CI runners try
+    # IPv6 first. Use an explicit address for both ends of this integration test.
+    host = "127.0.0.1"
     with subprocess.Popen(
         [
             sys.executable,
